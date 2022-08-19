@@ -1,3 +1,5 @@
+// Part 1 lesson 1 - 16
+
 let js = "amazing";
 // Values, smallest unit of information in JS
 console.log("Jonas");
@@ -109,8 +111,6 @@ console.log(25 - 10 - 5);
 let x1, y1;
 x1 = y1 = 25 - 10 - 5; // x1 = y1 = 10
 console.log(x1, y1);
-
 const averageAge = (ageSarah + ageDanny) / 2;
 console.log(ageSarah, ageDanny, averageAge);
-
 console.log(averageAge);
