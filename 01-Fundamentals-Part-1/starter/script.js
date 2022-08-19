@@ -72,13 +72,6 @@ foozBar = "whatevs";
 
 // ******** Operators ********.
 
-const now = 2022;
-const ageSarah = now - 2018;
-const ageDanny = now - 1963;
-console.log(ageSarah, ageDanny);
-//  2 ** 3 is the expontial operator
-console.log(ageSarah * 2, ageSarah / 10, 2 ** 3);
-
 const firstNme = "Danny";
 const lastNme = "Englander";
 
@@ -92,6 +85,13 @@ x--; // 100
 x--; // 99
 console.log(x);
 // greater than operator.
+const now = 2022;
+const ageSarah = now - 2018;
+const ageDanny = now - 1963;
+console.log(ageSarah, ageDanny);
+//  2 ** 3 is the expontial operator
+console.log(ageSarah * 2, ageSarah / 10, 2 ** 3);
+
 console.log(ageSarah > ageDanny); // true or false
 console.log(ageSarah < ageDanny);
 console.log(ageSarah >= 18);
@@ -99,3 +99,18 @@ console.log(ageSarah >= 18);
 const isFullAge = ageSarah >= 18;
 
 console.log("isFullAge", isFullAge);
+// Procedence see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#table
+// order of operator execution.
+console.log(now - 1991 > now - 2018);
+
+console.log(25 - 10 - 5);
+
+// Assignment operator, right to left
+let x1, y1;
+x1 = y1 = 25 - 10 - 5; // x1 = y1 = 10
+console.log(x1, y1);
+
+const averageAge = (ageSarah + ageDanny) / 2;
+console.log(ageSarah, ageDanny, averageAge);
+
+console.log(averageAge);
