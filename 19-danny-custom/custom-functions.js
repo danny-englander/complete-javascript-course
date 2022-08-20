@@ -34,9 +34,22 @@ itemArray.forEach((item) => {
 });
 // *************************************
 
-let fooRandomNums = [...Array(10)].map((_) => (Math.random() * 100) | 0);
-console.log("randoms", fooRandomNums);
+// Users from JSON
+const users = document.querySelector(".users");
 
-function fooCalcAverage(array) {
-  return array.reduce((prevVal, currVal) => prevVal + currVal) / array.length;
-}
+fetch("https://dummyjson.com/users")
+  .then((response) => response.json())
+  .then((json) =>
+    json.users.forEach((user) => {
+      console.log(user);
+      users.insertAdjacentHTML(
+        "afterbegin",
+        `<li class='users__items'>${user.firstName} ${user.firstName} <br> <a href="">${user.email}</a></li>`
+      );
+    })
+  )
+  .catch(() => console.log("error, no data"));
+
+fetch("https://dummyjson.com/users")
+  .then((response) => response.json())
+  .then((json) => console.log(json.users));
