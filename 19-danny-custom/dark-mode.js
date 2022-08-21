@@ -1,14 +1,13 @@
 const toggleBtn = document.getElementById("toggle-dark-mode");
-const theme = document.getElementById("theme");
 let darkMode = localStorage.getItem("dark-mode");
 
 const enableDarkMode = () => {
-  theme.classList.add("dark-mode-theme");
+  document.body.classList.add("has-dark-mode");
   localStorage.setItem("dark-mode", "enabled");
 };
 
 const disableDarkMode = () => {
-  theme.classList.remove("dark-mode-theme");
+  document.body.classList.remove("has-dark-mode");
   localStorage.setItem("dark-mode", "disabled");
 };
 

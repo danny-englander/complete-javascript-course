@@ -52,5 +52,3 @@ fetch("https://dummyjson.com/users?limit=10")
 fetch("https://dummyjson.com/users")
   .then((response) => response.json())
   .then((json) => console.log(json.users));
-
-const button = document.querySelector(".btn");
