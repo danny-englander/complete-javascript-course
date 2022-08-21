@@ -35,16 +35,15 @@ itemArray.forEach((item) => {
 // *************************************
 
 // Users from JSON
-const users = document.querySelector(".users");
+const userList = document.querySelector(".user-list");
 
-fetch("https://dummyjson.com/users")
+fetch("https://dummyjson.com/users?limit=10")
   .then((response) => response.json())
   .then((json) =>
     json.users.forEach((user) => {
-      console.log(user);
-      users.insertAdjacentHTML(
+      userList.insertAdjacentHTML(
         "afterbegin",
-        `<li class='users__items'>${user.firstName} ${user.firstName} <br> <a href="">${user.email}</a></li>`
+        `<li class='users__items'>${user.firstName} ${user.lastName} <br> <a href="">${user.email}</a></li>`
       );
     })
   )
@@ -53,3 +52,5 @@ fetch("https://dummyjson.com/users")
 fetch("https://dummyjson.com/users")
   .then((response) => response.json())
   .then((json) => console.log(json.users));
+
+const button = document.querySelector(".btn");
