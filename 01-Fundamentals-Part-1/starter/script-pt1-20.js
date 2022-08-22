@@ -21,14 +21,14 @@ console.log("23" / 2);
 
 let n = "1" + 1; // 11
 n = n - 1; // 11 -1
-console.log(n); // =  10
+console.log("n", n); // =  10
 
 let y = "100" - 1; // 99
 y = y + 1; // 99 + 1
-console.log(y); // =  100
+console.log("y", y); // =  100
 
 let z = "22" - "4" - "3" - "2" + 5;
-console.log(z); // 18
+console.log("z", z); // 18
 
 let x = "22" - "4" - "3" - 2 + "5";
-console.log(x); // 135 as a string
+console.log("x", x); // 135 as a string
