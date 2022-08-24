@@ -1,5 +1,6 @@
 // Random number function.
 let randomNums = [...Array(10)].map((_) => (Math.random() * 100) | 0);
+
 // Consecutive number function.
 let consecutiveNums = Array(10)
   .fill(20)

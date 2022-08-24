@@ -32,3 +32,15 @@ console.log("z", z); // 18
 
 let x = "22" - "4" - "3" - 2 + "5";
 console.log("x", x); // 135 as a string
+
+console.log("23" - "10" - 3); // 10
+console.log("23" * "2"); //46
+console.log("23" / "2"); // 11.5
+console.log("23" + "10" + 3); // str 23103]
+
+let b = "1" + 1;
+b = b - 1;
+console.log(b); // 10
+
+let c = 2 + 3 + 6 + 4 + "1";
+console.log(c); //151
