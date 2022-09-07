@@ -19,6 +19,7 @@
 
 // GOOD LUCK 😀
 
+// Custom average function,
 function calcAverage(array) {
   return (
     array.reduce(
@@ -33,8 +34,6 @@ const koalasScores1 = [99, 112, 101];
 
 const dolphinsMean1 = Math.floor(calcAverage(dolphinsScores1));
 const koalasMean1 = Math.floor(calcAverage(koalasScores1));
-
-const minScoreToWin = 100;
 
 console.log("Dolphins", dolphinsMean1);
 console.log("Koalas", koalasMean1);
