@@ -12,8 +12,10 @@ function logger() {
 logger();
 
 // Function with parameters
+// Functions adhere to the principle of DRY code just like with CSS.
 function fruitProcessor(apples, oranges) {
   const juice = `I'll have a juice with ${apples} apples and ${oranges} oranges`;
+
   // return the value from the const.
   // console.log(apples, oranges);
   return juice;
@@ -21,6 +23,5 @@ function fruitProcessor(apples, oranges) {
 // Return data.
 const myJuice = fruitProcessor(1, 2);
 console.log(myJuice);
-
 const appleOrangeJuice = fruitProcessor(3, 3);
 console.log(appleOrangeJuice);
