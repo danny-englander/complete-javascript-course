@@ -1,4 +1,7 @@
 "use strict";
+
+// Functions / ES5.
+
 // Declarations can be called before b/c of hoisting.
 const age1 = calcAge1(1963);
 // Function declaration
