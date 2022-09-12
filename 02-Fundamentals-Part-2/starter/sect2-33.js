@@ -15,9 +15,7 @@ logger();
 // Functions adhere to the principle of DRY code just like with CSS.
 function fruitProcessor(apples, oranges) {
   const juice = `I'll have a juice with ${apples} apples and ${oranges} oranges`;
-
   // return the value from the const.
-  // console.log(apples, oranges);
   return juice;
 }
 // Return data.
