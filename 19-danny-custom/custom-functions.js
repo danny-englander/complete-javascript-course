@@ -126,3 +126,9 @@ const counter = privateCounter();
 console.log("val", counter.getValue()); // initial value 0
 counter.increment();
 console.log("val", counter.getValue()); // initial value 1
+
+const convertToOunces = function (ml) {
+  return ml * 0.033814;
+};
+
+console.log("ml to ounces", convertToOunces(55));
