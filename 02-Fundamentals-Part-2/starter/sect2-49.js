@@ -25,8 +25,11 @@ while (rep <= 5) {
 let dice = Math.trunc(Math.random() * 6) + 1;
 console.log(dice);
 
+// This keeps on rolling the dice until a 6 is rolled.
 while (dice !== 6) {
   console.log(`You rolled a ${dice}`);
+  // Keep the loop going to roll.
   dice = Math.trunc(Math.random() * 6) + 1;
+  // if a 6 is rolled...
   if (dice === 6) console.log("Loop ended, you rolled a 6!!");
 }
