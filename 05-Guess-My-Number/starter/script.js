@@ -1,6 +1,7 @@
 "use strict";
 // Define the message element.
 const message = document.querySelector(".message");
+const btnAgain = document.querySelector(".again");
 
 // Score elements
 // score value.
@@ -11,11 +12,9 @@ const checkBtn = document.querySelector(".check");
 
 // Secret number generator
 // this generates a number between 1 and 20.
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 const number = document.querySelector(".number");
-
-// Make the number = to the random secret number we define.
-number.textContent = secretNumber;
+console.log(secretNumber);
 
 // Check button event listener.
 // 2 arguments, click and function.
@@ -35,8 +34,11 @@ checkBtn.addEventListener("click", function () {
   // When the guess = the secret number.
   else if (guess === secretNumber) {
     message.textContent = "🎉 That is correct, you won!!";
+    // Make the number = to the random secret number we define.
+    number.textContent = secretNumber;
     document.body.style.backgroundColor = "#60b347";
     number.style.width = "30rem";
+    secretNumber = Math.trunc(Math.random() * 20) + 1;
   }
 
   // When the guess > the secret number.
@@ -66,4 +68,13 @@ checkBtn.addEventListener("click", function () {
       score.textContent = 0;
     }
   }
+});
+
+btnAgain.addEventListener("click", function () {
+  message.textContent = "❓ Start guessing...";
+  score.textContent = 20;
+  document.querySelector(".guess").value = "";
+  document.body.style.backgroundColor = "#222";
+  number.textContent = "?";
+  number.style.width = "15rem";
 });
