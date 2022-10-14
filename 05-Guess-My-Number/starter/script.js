@@ -49,6 +49,7 @@ checkBtn.addEventListener("click", function () {
     //
     else {
       message.textContent = "💥 You lost the game";
+      score.textContent = 0;
     }
   }
 
@@ -62,6 +63,7 @@ checkBtn.addEventListener("click", function () {
     //
     else {
       message.textContent = "💥 You lost the game";
+      score.textContent = 0;
     }
   }
 });
