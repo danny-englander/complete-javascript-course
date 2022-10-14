@@ -7,7 +7,6 @@ const message = document.querySelector(".message");
 let scoreVal = 20;
 // score element
 const score = document.querySelector(".score");
-
 const checkBtn = document.querySelector(".check");
 
 // Secret number generator
@@ -15,8 +14,8 @@ const checkBtn = document.querySelector(".check");
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
 const number = document.querySelector(".number");
 
+// Make the number = to the random secret number we define.
 number.textContent = secretNumber;
-// console.log(number);
 
 // Check button event listener.
 // 2 arguments, click and function.
@@ -24,27 +23,44 @@ number.textContent = secretNumber;
 // anywhere else.
 // The function is only called when the click happens.
 checkBtn.addEventListener("click", function () {
+  // Define the guess input value.
   const guess = Number(document.querySelector(".guess").value);
   // console.log(typeof guess, guess);
+
   // if no input, send a message.
   if (!guess) {
     message.textContent = "🚫 Choose a number!";
-  } else if (guess === secretNumber) {
+  }
+
+  // When the guess = the secret number.
+  else if (guess === secretNumber) {
     message.textContent = "🎉 That is correct, you won!!";
-  } else if (guess > secretNumber) {
+    document.body.style.backgroundColor = "#60b347";
+    number.style.width = "30rem";
+  }
+
+  // When the guess > the secret number.
+  else if (guess > secretNumber) {
     if (scoreVal > 1) {
       message.textContent = "⬆️ Your guess is too high";
       scoreVal--;
       score.textContent = scoreVal;
-    } else {
+    }
+    //
+    else {
       message.textContent = "💥 You lost the game";
     }
-  } else if (guess < secretNumber) {
+  }
+
+  // When the guess < the secret number.
+  else if (guess < secretNumber) {
     if (scoreVal > 1) {
       message.textContent = "⬇️ Your guess is too low";
       scoreVal--;
       score.textContent = scoreVal;
-    } else {
+    }
+    //
+    else {
       message.textContent = "💥 You lost the game";
     }
   }
