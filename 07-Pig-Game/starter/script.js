@@ -23,6 +23,9 @@ const diceEL = document.querySelector(".dice");
 const score0EL = document.getElementById("score--0");
 const score1EL = document.getElementById("score--1");
 
+// Define the current score
+let currentScore = 0;
+
 // Set the initial score text content to 0.
 // Starting states.
 score0EL.textContent = 0;
@@ -40,12 +43,20 @@ btnRoll.addEventListener("click", function () {
   // Display the dice roll.
   diceEL.classList.remove("hidden");
 
-  if (dice === 1) {
+  // Set the dice number image displayed on click to match the number rolled.
+  diceEL.src = `dice-${dice}.png`;
+
+  // If a 1 is rolled.
+  if (dice !== 1) {
+    console.log("I did not roll a 1");
+    // Define the new current score.
+    currentScore += dice;
+    console.log("curr score", currentScore);
+    // Update the player score as you roll the dice.
+    currentScore0.textContent = currentScore;
+  } else {
     console.log("I rolled a 1");
   }
-
-  // Set the dice number image displayed on click to match the number rolled.
-  diceEL.setAttribute("src", `dice-${dice}.png`);
 
   console.log(dice);
 });
