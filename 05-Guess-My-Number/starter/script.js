@@ -2,7 +2,7 @@
 // Define the message element.
 const message = document.querySelector(".message");
 const btnAgain = document.querySelector(".again");
-
+const highscoreEl = document.querySelector(".highscore");
 // Score elements
 // score value.
 let score = 20;
@@ -40,6 +40,7 @@ checkBtn.addEventListener("click", function () {
     document.body.style.backgroundColor = "#60b347";
     number.style.width = "30rem";
     secretNumber = Math.trunc(Math.random() * 20) + 1;
+    highscoreEl.textContent = scoreEL.textContent;
   }
 
   // When the guess > the secret number.
