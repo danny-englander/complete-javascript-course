@@ -16,7 +16,12 @@ const checkBtn = document.querySelector(".check");
 // this generates a number between 1 and 20.
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 const number = document.querySelector(".number");
-console.log(secretNumber);
+// console.log(secretNumber);
+
+// Custom function for messages.
+const displayMessage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
 
 // Check button event listener.
 // 2 arguments, click and function.
@@ -30,12 +35,12 @@ checkBtn.addEventListener("click", function () {
 
   // if no input, send a message.
   if (!guess) {
-    message.textContent = "🚫 Choose a number!";
+    displayMessage("🚫 Choose a number!");
   }
 
   // When the guess = the secret number.
   else if (guess === secretNumber) {
-    message.textContent = "🎉 That is correct, you won!!";
+    displayMessage("🎉 That is correct, you won!!");
     // Make the number = to the random secret number we define.
     number.textContent = secretNumber;
     document.body.style.backgroundColor = "#60b347";
@@ -53,18 +58,19 @@ checkBtn.addEventListener("click", function () {
   // When the guess is wrong either way, high or low.
   else if (guess !== secretNumber) {
     if (score > 1) {
-      // use a ternary here for the refactor.
-      message.textContent =
+      // Use a ternary here for the refactor.
+      displayMessage(
         guess > secretNumber
           ? "⬆️ Your guess is too high"
-          : "⬇️ Your guess is too low";
+          : "⬇️ Your guess is too low"
+      );
 
       score--;
       scoreEL.textContent = score;
     }
     //
     else {
-      message.textContent = "💥 You lost the game";
+      displayMessage("💥 You lost the game");
       scoreEL.textContent = 0;
     }
   }
@@ -73,7 +79,7 @@ checkBtn.addEventListener("click", function () {
 btnAgain.addEventListener("click", function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  message.textContent = "❓Start guessing...";
+  displayMessage("❓Start guessing...");
   scoreEL.textContent = score;
   document.querySelector(".guess").value = "";
   number.textContent = "?";
