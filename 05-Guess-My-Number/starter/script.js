@@ -6,6 +6,7 @@ const highscoreEl = document.querySelector(".highscore");
 // Score elements
 // score value.
 let score = 20;
+// highscore (starts at 0)
 let highscore = 0;
 // score element
 const scoreEL = document.querySelector(".score");
@@ -40,27 +41,24 @@ checkBtn.addEventListener("click", function () {
     document.body.style.backgroundColor = "#60b347";
     number.style.width = "30rem";
     secretNumber = Math.trunc(Math.random() * 20) + 1;
-    highscoreEl.textContent = scoreEL.textContent;
-  }
 
-  // When the guess > the secret number.
-  else if (guess > secretNumber) {
-    if (score > 1) {
-      message.textContent = "⬆️ Your guess is too high";
-      score--;
-      scoreEL.textContent = score;
-    }
-    //
-    else {
-      message.textContent = "💥 You lost the game";
-      scoreEL.textContent = 0;
+    // Update the highscore value.
+    if (score > highscore) {
+      highscore = score;
+      // Set the new highscore.
+      highscoreEl.textContent = highscore;
     }
   }
 
-  // When the guess < the secret number.
-  else if (guess < secretNumber) {
+  // When the guess is wrong either way, high or low.
+  else if (guess !== secretNumber) {
     if (score > 1) {
-      message.textContent = "⬇️ Your guess is too low";
+      // use a ternary here for the refactor.
+      message.textContent =
+        guess > secretNumber
+          ? "⬆️ Your guess is too high"
+          : "⬇️ Your guess is too low";
+
       score--;
       scoreEL.textContent = score;
     }
@@ -75,7 +73,7 @@ checkBtn.addEventListener("click", function () {
 btnAgain.addEventListener("click", function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  message.textContent = "Start guessing...";
+  message.textContent = "❓Start guessing...";
   scoreEL.textContent = score;
   document.querySelector(".guess").value = "";
   number.textContent = "?";
