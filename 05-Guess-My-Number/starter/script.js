@@ -5,9 +5,10 @@ const btnAgain = document.querySelector(".again");
 
 // Score elements
 // score value.
-let scoreVal = 20;
+let score = 20;
+let highscore = 0;
 // score element
-const score = document.querySelector(".score");
+const scoreEL = document.querySelector(".score");
 const checkBtn = document.querySelector(".check");
 
 // Secret number generator
@@ -43,38 +44,47 @@ checkBtn.addEventListener("click", function () {
 
   // When the guess > the secret number.
   else if (guess > secretNumber) {
-    if (scoreVal > 1) {
+    if (score > 1) {
       message.textContent = "⬆️ Your guess is too high";
-      scoreVal--;
-      score.textContent = scoreVal;
+      score--;
+      document.querySelector(".score").textContent = score;
     }
     //
     else {
       message.textContent = "💥 You lost the game";
-      score.textContent = 0;
+      document.querySelector(".score").textContent = 0;
     }
   }
 
   // When the guess < the secret number.
   else if (guess < secretNumber) {
-    if (scoreVal > 1) {
+    if (score > 1) {
       message.textContent = "⬇️ Your guess is too low";
-      scoreVal--;
-      score.textContent = scoreVal;
+      score--;
+      document.querySelector(".score").textContent = score;
     }
     //
     else {
       message.textContent = "💥 You lost the game";
-      score.textContent = 0;
+      document.querySelector(".score").textContent = 0;
     }
   }
 });
 
 btnAgain.addEventListener("click", function () {
-  message.textContent = "❓ Start guessing...";
-  score.textContent = 20;
+  score = 20;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+  document.querySelector(".message").textContent = "Start guessing...";
+  // displayMessage("Start guessing...");
+  document.querySelector(".score").textContent = score;
+  // document.querySelector(".number").textContent = "?";
   document.querySelector(".guess").value = "";
-  document.body.style.backgroundColor = "#222";
+
+  // document.querySelector("body").style.backgroundColor = "#222";
+  // document.querySelector(".number").style.width = "15rem";
+
   number.textContent = "?";
   number.style.width = "15rem";
+  document.body.style.backgroundColor = "#222";
 });
