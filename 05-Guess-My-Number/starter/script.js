@@ -47,12 +47,12 @@ checkBtn.addEventListener("click", function () {
     if (score > 1) {
       message.textContent = "⬆️ Your guess is too high";
       score--;
-      document.querySelector(".score").textContent = score;
+      scoreEL.textContent = score;
     }
     //
     else {
       message.textContent = "💥 You lost the game";
-      document.querySelector(".score").textContent = 0;
+      scoreEL.textContent = 0;
     }
   }
 
@@ -61,12 +61,12 @@ checkBtn.addEventListener("click", function () {
     if (score > 1) {
       message.textContent = "⬇️ Your guess is too low";
       score--;
-      document.querySelector(".score").textContent = score;
+      scoreEL.textContent = score;
     }
     //
     else {
       message.textContent = "💥 You lost the game";
-      document.querySelector(".score").textContent = 0;
+      scoreEL.textContent = 0;
     }
   }
 });
@@ -74,16 +74,9 @@ checkBtn.addEventListener("click", function () {
 btnAgain.addEventListener("click", function () {
   score = 20;
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-
-  document.querySelector(".message").textContent = "Start guessing...";
-  // displayMessage("Start guessing...");
-  document.querySelector(".score").textContent = score;
-  // document.querySelector(".number").textContent = "?";
+  message.textContent = "Start guessing...";
+  scoreEL.textContent = score;
   document.querySelector(".guess").value = "";
-
-  // document.querySelector("body").style.backgroundColor = "#222";
-  // document.querySelector(".number").style.width = "15rem";
-
   number.textContent = "?";
   number.style.width = "15rem";
   document.body.style.backgroundColor = "#222";
