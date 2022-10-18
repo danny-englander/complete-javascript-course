@@ -1,11 +1,11 @@
 "use strict";
 
 // Define player vars.
-// Player 1
-
+// Global player/
 const playerEL = document.querySelector(".player");
 const playerActiveEL = document.querySelector(".player--active");
 
+// Player 1
 const player0EL = document.querySelector(".player--0");
 const name0EL = document.getElementById("name--0");
 const current0EL = document.getElementById("current--0");
@@ -40,6 +40,22 @@ score0EL.textContent = 0;
 score1EL.textContent = 0;
 diceEL.classList.add("hidden");
 
+// Custom function for player switching and updating.
+const switchPlayer = function () {
+  // set the active player's current score back to zero before we switch
+  // to the new active player as per below.
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  // Reset the current score to zero when the player switches after a 1 is rolled..
+  currentScore = 0;
+  // Switch to the new active player with a ternary operator.
+  // if the active player is 0, then make the current player 1 and vice-versa.
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  console.log("The active player is now player", activePlayer);
+  // Switch the active player background using toggle.
+  player0EL.classList.toggle("player--active");
+  player1EL.classList.toggle("player--active");
+};
+
 // Rolling the dice.
 btnRoll.addEventListener("click", function () {
   // 1. generate a random dice roll.
@@ -50,15 +66,6 @@ btnRoll.addEventListener("click", function () {
 
   // Display the dice roll.
   diceEL.classList.remove("hidden");
-
-  // if (
-  //   playerEL.classList.contains("player--active") &&
-  //   playerEL.classList.contains("player--0")
-  // ) {
-  //   console.log("the current player is player 1");
-  // } else {
-  //   console.log("the current player is player 2");
-  // }
 
   // Set the dice number image displayed on click to match the number rolled.
   diceEL.src = `dice-${dice}.png`;
@@ -73,20 +80,41 @@ btnRoll.addEventListener("click", function () {
     // TODO: FIXME: this will have to be changed later for each player.
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
+  }
 
-    // Switch to the next player when a 1 is rolled.
-  } else {
-    // Switch to the new active player with a ternary operator.
-    // if the active player is 0, then make the current player 1 and vice-versa.
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    console.log("The active player is now player", activePlayer);
-    // Reset the current score to zero when the player switches after a 1 is rolled..
-    currentScore = 0;
-
-    document
-      .getElementById(`player--${activePlayer}`)
-      .classList.add("player--active");
+  // Switch to the next player when a 1 is rolled.
+  else {
+    switchPlayer();
   }
 
   console.log(dice);
+});
+
+// Hold button click functionality.
+btnHold.addEventListener("click", function () {
+  // Add the current score to the total score of the active player.
+  // Finish the game.
+  // Check if player's score is >= 100, otherwise, switch to the next player.
+  // scores[1] = scores[1] + currentScore;
+  scores[activePlayer] = scores[activePlayer] + currentScore;
+
+  // Set the current player's score to the new total as per scores[activePlayer] + currentScore.
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+
+  // Switch to the next player.
+  switchPlayer();
+});
+
+// New game button click functionality.
+btnNew.addEventListener("click", function () {
+  // Reset the total scores to 0 for each player.
+  score0EL.textContent = 0;
+  score1EL.textContent = 0;
+  // Hide the dice.
+  diceEL.classList.add("hidden");
+
+  // Reset the active player to player 0 (player 1)
+  player0EL.classList.add("player--active");
+  player1EL.classList.remove("player--active");
 });
