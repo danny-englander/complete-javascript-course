@@ -33,6 +33,8 @@ const scores = [0, 0];
 let currentScore = 0;
 // Active player starts at the first player, player 1 (0)
 let activePlayer = 0;
+// "State variable" - Game state, playing the game or not boolean.
+let playing = true;
 
 // Set the initial score text content to 0.
 // Starting states.
@@ -58,52 +60,75 @@ const switchPlayer = function () {
 
 // Rolling the dice.
 btnRoll.addEventListener("click", function () {
-  // 1. generate a random dice roll.
-  // display dice
-  // check for a rolled one.
-  // Define the random dice roll, 1-6.
-  const dice = Math.trunc(Math.random() * 6) + 1;
+  // If the game state is in playing mode (true).
+  if (playing) {
+    // 1. generate a random dice roll.
+    // display dice
+    // check for a rolled one.
+    // Define the random dice roll, 1-6.
+    const dice = Math.trunc(Math.random() * 6) + 1;
 
-  // Display the dice roll.
-  diceEL.classList.remove("hidden");
+    // Display the dice roll.
+    diceEL.classList.remove("hidden");
 
-  // Set the dice number image displayed on click to match the number rolled.
-  diceEL.src = `dice-${dice}.png`;
+    // Set the dice number image displayed on click to match the number rolled.
+    diceEL.src = `dice-${dice}.png`;
 
-  // If a 1 is rolled.
-  if (dice !== 1) {
-    console.log("I did not roll a 1");
-    // Define the new current score.
-    currentScore += dice;
-    console.log("curr score", currentScore);
-    // Update the player score as you roll the dice.
-    // TODO: FIXME: this will have to be changed later for each player.
-    document.getElementById(`current--${activePlayer}`).textContent =
-      currentScore;
+    // If a 1 is rolled.
+    if (dice !== 1) {
+      console.log("I did not roll a 1");
+      // Define the new current score.
+      currentScore += dice;
+      console.log("curr score", currentScore);
+      // Update the player score as you roll the dice.
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    }
+
+    // Switch to the next player when a 1 is rolled.
+    else {
+      switchPlayer();
+    }
+    console.log(dice);
   }
-
-  // Switch to the next player when a 1 is rolled.
-  else {
-    switchPlayer();
-  }
-
-  console.log(dice);
 });
 
 // Hold button click functionality.
 btnHold.addEventListener("click", function () {
-  // Add the current score to the total score of the active player.
-  // Finish the game.
-  // Check if player's score is >= 100, otherwise, switch to the next player.
-  // scores[1] = scores[1] + currentScore;
-  scores[activePlayer] = scores[activePlayer] + currentScore;
+  // All the code executes.
+  // but once a player gets 100 or more, than playing is set
+  if (playing) {
+    // Add the current score to the total score of the active player.
+    // Finish the game.
+    // Check if player's score is >= 100, otherwise, switch to the next player.
+    // scores[1] = scores[1] + currentScore;
+    scores[activePlayer] = scores[activePlayer] + currentScore;
 
-  // Set the current player's score to the new total as per scores[activePlayer] + currentScore.
-  document.getElementById(`score--${activePlayer}`).textContent =
-    scores[activePlayer];
+    // Set the current player's score to the new total as per scores[activePlayer] + currentScore.
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
 
-  // Switch to the next player.
-  switchPlayer();
+    // The Game is finished.
+    if (scores[activePlayer] >= 20) {
+      // Set the game state to false since the game has now been won.
+      playing = false;
+      // The game is over and a player has won.
+      // Assign a class to the winning player.
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add("player--winner");
+      // Remove the active player class.
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove("player--active");
+
+      // Hide the dice.
+      diceEL.classList.add("hidden");
+    } else {
+      // Switch to the next player.
+      switchPlayer();
+    }
+  }
 });
 
 // New game button click functionality.
@@ -111,10 +136,12 @@ btnNew.addEventListener("click", function () {
   // Reset the total scores to 0 for each player.
   score0EL.textContent = 0;
   score1EL.textContent = 0;
-  // Hide the dice.
-  diceEL.classList.add("hidden");
-
   // Reset the active player to player 0 (player 1)
   player0EL.classList.add("player--active");
   player1EL.classList.remove("player--active");
+
+  // Remove the winning class.
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove("player--winner");
 });
